@@ -7,3 +7,8 @@ I am applying as part of a team to apply matrix factorization techniques to defi
 Cheers,
 
 Elana
+
+# Other related applications
+
+* [Casey Greene](https://github.com/greenelab/czi-rfa)
+* [Loyal Goff](https://github.com/gofflab/czi-rfa-2017)

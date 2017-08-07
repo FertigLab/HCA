@@ -1,6 +1,6 @@
 *1,600 words max*
 
-# *Proposed title:* Bayesian matrix factorization for multimodal integration of time-course omics data
+# Bayesian matrix factorization for multimodal integration of time-course omics data
 
 # Summary 
 Single-cell analysis of gene expression has demonstrated that population-level gene expression and the ‘transcriptional identity’ of individual cells arises from the combinations dependent and independent contributions of discrete biological processes (Wagner, Regev, Yosef, Nat Biotchnology, 2016). The combinations of these processes change dynamically as organisms develop. Inter-individual genetic variation and pharmacological perturbations from treatment of complex diseases induce further changes into these processes. Learning developmental trajectories and timing of state transitions requires analytical techniques to delineate cellular composition from dynamic biological processes in single cell, transcriptional data.

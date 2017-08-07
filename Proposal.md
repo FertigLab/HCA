@@ -1,4 +1,4 @@
-*1,600 words max*
+**1,600 words max**
 
 # Bayesian matrix factorization for multimodal integration of time-course omics data
 
@@ -11,27 +11,40 @@ The central aim of this research proposal is to address challenges pervasive to 
 
 # Project Aims, and how they address program goals: 
 
-*Aim 1 Parallel Gene Activity in Pattern Sets (P-GAPS) to learn state transitions and developmental trajectories from large, time-course omics data.* CoGAPS can be implemented in parallel across genes for whole-genome analysis, but is limited to O(1000) samples for guaranteed convergence. SIMILAR CHALLENGES IN OTHER NMF, REQUIRING FEATURE COMPACTION PRIOR TO ANALYSIS THAT MAY LIMIT IMPLICATION OF APPROPRIATE GENES AND/OR SAMPLES THAT ARE MOST RELEVANT. To ensure both solution optimization and computational efficiency, we will develop a message passing system to extend the GWCoGAPS framework to parallelize pattern detection across large sample sets. We will apply this algorithm to RANDMOLY SELECTED SUBSETS OF HCA benchmark data TO ENSURE THAT PARALLELIZATION DOES NOT IMPACT ACCURACY OF PATTERNS LEARNED. THEN WILL APPLY ON WHOLE DATA TO LEARN TIME-COURSE PATTERNS. Program goal: The P-GAPS patterns learned from HCA TIME-COURSE DATA WILL BENCHMARK ABILITY inference of state transitions and developmental trajectories WITH PARALLEL PROCESSING OF UNSUPERVISED LEARNING TO ENHANCE EFFICIENCY. 
+**Aim 1 Parallel Gene Activity in Pattern Sets (P-GAPS) to learn state transitions and developmental trajectories from large, time-course omics data.** CoGAPS can be implemented in parallel across genes for whole-genome analysis, but is limited to O(1000) samples for guaranteed convergence. SIMILAR CHALLENGES IN OTHER NMF, REQUIRING FEATURE COMPACTION PRIOR TO ANALYSIS THAT MAY LIMIT IMPLICATION OF APPROPRIATE GENES AND/OR SAMPLES THAT ARE MOST RELEVANT. To ensure both solution optimization and computational efficiency, we will develop a message passing system to extend the GWCoGAPS framework to parallelize pattern detection across large sample sets. We will apply this algorithm to RANDMOLY SELECTED SUBSETS OF HCA benchmark data TO ENSURE THAT PARALLELIZATION DOES NOT IMPACT ACCURACY OF PATTERNS LEARNED. THEN WILL APPLY ON WHOLE DATA TO LEARN TIME-COURSE PATTERNS. Program goal: The P-GAPS patterns learned from HCA TIME-COURSE DATA WILL BENCHMARK ABILITY inference of state transitions and developmental trajectories WITH PARALLEL PROCESSING OF UNSUPERVISED LEARNING TO ENHANCE EFFICIENCY. 
 
-*Aim 2 Modeling the impact of sparsity on technical variation between bulk and multi-platform single cell RNA-sequencing.* We will modify the hyperparameters in the prior distribution for CoGAPS to model different levels of sparsity between bulk and single cell-RNA sequencing data. We will apply the modified algorithm to time-course bulk and RNA-seq data from samples from similar developmental phases. We will model the resulting common biological patterns across sequencing platforms as a function of the sparsity hyperparameter. Program goal: MULTIMODAL INTEGRATION, INFERENCE OF STATE TRANSITIONS AND DEVELOPMENTAL TRAJECTORIES
+**Aim 2 Modeling the impact of sparsity on technical variation between bulk and multi-platform single cell RNA-sequencing.** We will modify the hyperparameters in the prior distribution for CoGAPS to model different levels of sparsity between bulk and single cell-RNA sequencing data. We will apply the modified algorithm to time-course bulk and RNA-seq data from samples from similar developmental phases. We will model the resulting common biological patterns across sequencing platforms as a function of the sparsity hyperparameter. Program goal: MULTIMODAL INTEGRATION, INFERENCE OF STATE TRANSITIONS AND DEVELOPMENTAL TRAJECTORIES
 
 # Prior contributions in the area and preliminary results:
 
-*Adapt to time course analysis*
+**Adapt to time course analysis**
 
 We have performed numerous genomics analyses of data from complex experimental designs in cancer2-22. Our work on cross-study analyses of tumor samples and biopsies with various procurements leaded to methods for integrating both technical and biological data types. Specifically, we developed a novel batch correction algorithm, pSVA, to preserve biological variation for unsupervised analysis19 and 2) a concomitant analysis of DNA methylation and gene expression with CoGAPS5. Recently, we have adapted CoGAPS to study biological variation within healthy human stem cells and postmortem tissues 23,24. 
-Proposed work and deliverables:
-Aim 1 Parallel Gene Activity in Pattern Sets (P-GAPS) to learn state transitions and developmental trajectories from large, time-course omics data.
-P-GAPS algorithm development. With GWCoGAPS, we demonstrated that patterns from CoGAPS can be estimated genome wide with a parallel approach across random sets of genes23,24. This algorithm converges for datasets from standard experimental designs capped at O(1000) samples, but will face similar challenges when for the number of samples planned in the Human Cell Atlas. We will address this challenge by parallelizing CoGAPS across both samples and genes while assessing algorithm performance as follows.
-(1)	Using the 1,000 genes with largest ratio of inter-sample variability relative to inter-batch as described previously19 in GTeX and TCGA samples, we will apply the parallel approach of GWCoGAPS to samples instead of genes. We will evaluate the similarity of gene weights among parallel runs as a function of the extent of confounding between batch and experimental conditions in each sample set.
-(2)	We will divide the HCA benchmark datasets into groups of random, but overlapping sets of genes and samples. CoGAPS will be run in parallel for each set. During the MCMC iterations in CoGAPS, message passing between the parallel chains will be employed to determine the current state of the factorization. Approximate Bayesian computation across all of the chains will determine the consensus patterns and gene weights across all random sets of genes and samples, and chains will be continued from the consensus solutions.
-Pitfalls and proposed solutions. (1) If P-GAPS fails to converge because of the large sample size, we will implement compaction approaches across samples25,26. (2) Because batches and tissue types are perfectly confounded in TCGA, they may dominate the signal learned from P-GAPS. In this case, we will limit analyses to common tissue types in both dataset to assess biological reproducibility from age, gender, race, and batch. 
-Aim 2 Modeling the impact of sparsity on technical variation between bulk and multi-platform single cell RNA-sequencing.
-Sparsity parameter algorithm development. Currently, CoGAPS contains a sparsity parameter tuned for microarray data1 and RNA-sequencing24 data. To tune the algorithm for single-cell RNA-sequencing, we will modify the existing algorithm to utilize different sparsity hyperparameters for different samples within a dataset that contains mixed bulk and single-cell RNA-sequencing. 
-Statistical analysis for systematic comparison of the impact of sparsity on data from distinct sequencing technologies. We will apply CoGAPS with mixed sparsity hyperparameters to the combined bulk and single cell RNA-sequencing data sets from matched samples in Table 2. We run CoGAPS for a range of sparsity hyperparameters for each of the Smart-Seq2 and 10X sequencing separately. Robustness will be estimated by comparing the number of shared patterns across data platforms as a function of these hyperparameters.   
-Pitfalls and proposed solutions. (1) If missing data from single cell RNA-sequencing results in poor convergence, we will apply preprocessing diffusion methods such as MAGIC27. (2) If variance stabilization is an ill-fitting error model, we will adapt the MCMC framework of CoGAPS to include a negative binomial error model. 
-Deliverables: (1) R/C++ code for P-GAPS encoded in the R/Bioconductor package CoGAPS. (2) R/C++ code to modify the sparsity hyper-parameter by sample encoded in the R/Bioconductor package CoGAPS. (3) R scripts to reproduce all analyses in the project aims. (4) Raw and processed data from Table 2. (4) Manuscript(s) on algorithm and results. 
-Proposal for evaluation and dissemination of methods, resources, or results
+
+# Proposed work and deliverables:
+
+**Adapt to time course analysis**
+
+## Aim 1 Parallel Gene Activity in Pattern Sets (P-GAPS) to learn state transitions and developmental trajectories from large, time-course omics data.
+
+**P-GAPS algorithm development.** With GWCoGAPS, we demonstrated that patterns from CoGAPS can be estimated genome wide with a parallel approach across random sets of genes23,24. This algorithm converges for datasets from standard experimental designs capped at O(1000) samples, but will face similar challenges when for the number of samples planned in the Human Cell Atlas. We will address this challenge by parallelizing CoGAPS across both samples and genes while assessing algorithm performance as follows.
+
+1. Using the 1,000 genes with largest ratio of inter-sample variability relative to inter-batch as described previously19 in GTeX and TCGA samples, we will apply the parallel approach of GWCoGAPS to samples instead of genes. We will evaluate the similarity of gene weights among parallel runs as a function of the extent of confounding between batch and experimental conditions in each sample set.
+2. We will divide the HCA benchmark datasets into groups of random, but overlapping sets of genes and samples. CoGAPS will be run in parallel for each set. During the MCMC iterations in CoGAPS, message passing between the parallel chains will be employed to determine the current state of the factorization. Approximate Bayesian computation across all of the chains will determine the consensus patterns and gene weights across all random sets of genes and samples, and chains will be continued from the consensus solutions.
+
+**Pitfalls and proposed solutions.** (1) If P-GAPS fails to converge because of the large sample size, we will implement compaction approaches across samples25,26. (2) Because batches and tissue types are perfectly confounded in TCGA, they may dominate the signal learned from P-GAPS. In this case, we will limit analyses to common tissue types in both dataset to assess biological reproducibility from age, gender, race, and batch. 
+
+## Aim 2 Modeling the impact of sparsity on technical variation between bulk and multi-platform single cell RNA-sequencing.
+
+**Sparsity parameter algorithm development.** Currently, CoGAPS contains a sparsity parameter tuned for microarray data1 and RNA-sequencing24 data. To tune the algorithm for single-cell RNA-sequencing, we will modify the existing algorithm to utilize different sparsity hyperparameters for different samples within a dataset that contains mixed bulk and single-cell RNA-sequencing. 
+Statistical analysis for systematic comparison of the impact of sparsity on data from distinct sequencing technologies. We will apply CoGAPS with mixed sparsity hyperparameters to the combined bulk and single cell RNA-sequencing data sets from matched samples in Table 2. We run CoGAPS for a range of sparsity hyperparameters for each of the Smart-Seq2 and 10X sequencing separately. Robustness will be estimated by comparing the number of shared patterns across data platforms as a function of these hyperparameters.
+
+**Pitfalls and proposed solutions.** (1) If missing data from single cell RNA-sequencing results in poor convergence, we will apply preprocessing diffusion methods such as MAGIC27. (2) If variance stabilization is an ill-fitting error model, we will adapt the MCMC framework of CoGAPS to include a negative binomial error model. 
+
+**Deliverables:** (1) R/C++ code for P-GAPS encoded in the R/Bioconductor package CoGAPS. (2) R/C++ code to modify the sparsity hyper-parameter by sample encoded in the R/Bioconductor package CoGAPS. (3) R scripts to reproduce all analyses in the project aims. (4) Raw and processed data from Table 2. (4) Manuscript(s) on algorithm and results released through Bioarxiv concurrent with submission. 
+
+# Proposal for evaluation and dissemination of methods, resources, or results
+
 how will benchmark datasets be shared; what testing of computational methods has already been conducted and what new tests are proposed; what engineering support from CZI would advance dissemination of this resource or method
 Statement of commitment to share proposals, methods, data, and code with other researchers funded by this RFA and with CZI
 Primary data: All scripts will be openly shared consistent with the PI’s standard practice (e.g., https://sourceforge.net/projects/psva/, https://github.com/FertigLab/EGFRFeedback).
@@ -40,7 +53,7 @@ Methods: All methods will be fully described and submitted for peer-reviewed and
 Software: Any algorithms will be released as part of the open-source CoGAPS Bioconductor package1. Bioconductor is a centralized, peer-reviewed database and release there will support future application and development by the broader community.
 
  
-References
+# References
 1	Fertig EJ, Ding J, Favorov AV, Parmigiani G & Ochs MF. CoGAPS: an R/C++ package to identify patterns and biological process activity in transcriptomic data. Bioinformatics 26, 2792-2793, (2010). PMC3025742.
 2	Afsari B, Geman D & Fertig EJ. Learning dysregulated pathways in cancers from differential variability analysis. Cancer Inform 13, 61-67, (2014). PMC4218688.
 3	Cheng H, Fertig EJ, Ozawa H, Hatakeyama H, Howard JD, Perez J, Considine M, Thakar M, Ranaweera R, Krigsfeld G & Chung CH. Decreased SMAD4 expression is associated with induction of epithelial-to-mesenchymal transition and cetuximab resistance in head and neck squamous cell carcinoma. Cancer Biol Ther 16, 1252-1258, (2015). PMC4623002.

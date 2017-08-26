@@ -12,3 +12,6 @@ Elana
 
 * [Casey Greene](https://github.com/greenelab/czi-rfa)
 * [Loyal Goff](https://github.com/gofflab/czi-rfa-2017)
+* Arjun Raj
+* Rob Patro
+* Lana Garmire

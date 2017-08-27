@@ -15,3 +15,4 @@ Elana
 * Arjun Raj
 * Rob Patro
 * Lana Garmire
+* Smita Krishnaswamy
